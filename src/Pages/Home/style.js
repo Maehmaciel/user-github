@@ -8,27 +8,28 @@ export const Card = styled.div`
   backface-visibility: hidden;
   background-color: #fff;
   color: black;
-  border-radius: 20px;
+  border-radius: 10px;
 `;
 export const Container = styled.div`
-  max-width: 960px;
-  width: 50%;
+  width: 30%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 export const Section = styled.section`
   width: 100%;
   min-height: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const Form = styled.form`
   padding: 24px;
   display: flex;
   flex-direction: column;
+`;
+export const Button = styled.button`
+  background-color: #73b452;
+  padding: 10px;
+  color: #fff;
+  border-radius: 10px;
 `;

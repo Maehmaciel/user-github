@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { Form, Container, Section, Card } from './style';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Form, Container, Section, Card, Button } from './style';
 import api from '../../services/api';
 
 function Home() {
   const [userName, setUserName] = useState('');
   const [inputMessage, setInputMessage] = useState('');
-  const [user, setUser] = useState({});
-  const [repos, setRepos] = useState([]);
-  const [cls, setClass] = useState('cad');
-
+  const [user, setUser] = useState('');
+  const [cls, setClass] = useState('ini');
+  useEffect(() => {
+    localStorage.removeItem('@Git:user', user);
+  }, []);
   async function searchUser(event) {
     event.preventDefault();
     if (!userName) {
@@ -16,23 +18,15 @@ function Home() {
       return;
     }
     try {
-      const { data } = await api.get(`${userName}/repos`);
-
-      data.sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      });
-
-      setRepos(data);
+      await api.get(`${userName}`);
+      localStorage.setItem('@Git:user', userName);
+      setUser(userName);
     } catch (error) {
-      setClass('err');
-      setInputMessage('Opa, Usuário não Encontrado');
+      setClass('ini err');
     }
+  }
+  if (user) {
+    return <Redirect to="/user" />;
   }
   return (
     <>
@@ -40,24 +34,23 @@ function Home() {
         <Section className="flip-card">
           <div className={cls}>
             <Card className="front">
-              <h1>IAI MENINA</h1>
-
               <Form onSubmit={searchUser}>
                 <input
                   onChange={(e) => setUserName(e.target.value)}
                   type="text"
-                  placeholder="Digite o nome de um Usuário"
+                  placeholder="Usuário do github"
                 />
-
-                <button type="submit">Pesquisar</button>
+                {inputMessage && <p>{inputMessage}</p>}
+                <Button type="submit">Pesquisar</Button>
               </Form>
             </Card>
             <Card className="back">
               <h1>Erro :(</h1>
               {inputMessage && <p>{inputMessage}</p>}
               <button
+                type="button"
                 onClick={() => {
-                  setClass('cad');
+                  setClass('ini cad');
                 }}
               >
                 Pesquisar
@@ -65,15 +58,6 @@ function Home() {
             </Card>
           </div>
         </Section>
-
-        {repos.length > 0 && (
-          <Section>
-            <h1>{user.login}</h1>
-            {repos.map((repo) => (
-              <a key={repo.full_name}>{repo.full_name}</a>
-            ))}
-          </Section>
-        )}
       </Container>
     </>
   );
