@@ -18,10 +18,12 @@ function Home() {
       return;
     }
     try {
-      await api.get(`${userName}`);
-      localStorage.setItem('@Git:user', userName);
+      const { data } = await api.get(`${userName}`);
+      console.log(data);
+      localStorage.setItem('@Git:user', data.login);
       setUser(userName);
     } catch (error) {
+      console.log(error);
       setClass('ini err');
     }
   }
