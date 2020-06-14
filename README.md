@@ -1,6 +1,13 @@
+#Cosmobots
+
+Projeto desenvolvido em React como resposta ao desafio da empresa Cosmobots e possibilita:
+- Pesquisar usuário do github;
+- Vizualizar informações do usuário, caso exista;
+- Vizualizar repositórios públicos, ordenados pela quantidade de estrelas que o repositório possui.
+
 ## Scripts Disponíveis
 
-No diretótio do projeto, você pode utilizar
+No diretótio do projeto, você pode utilizar:
 
 ### `yarn start`
 
