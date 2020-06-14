@@ -1,4 +1,4 @@
-#Cosmobots
+# Cosmobots
 
 Projeto desenvolvido em React como resposta ao desafio da empresa Cosmobots e possibilita:
 - Pesquisar usuário do github;
