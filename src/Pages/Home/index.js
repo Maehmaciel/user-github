@@ -22,6 +22,7 @@ function Home() {
       localStorage.setItem('@Git:user', data.login);
       setUser(userName);
     } catch (error) {
+      setInputMessage('');
       setClass('ini err');
     }
   }
