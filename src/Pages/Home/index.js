@@ -9,7 +9,7 @@ function Home() {
   const [user, setUser] = useState('');
   const [cls, setClass] = useState('ini');
   useEffect(() => {
-    localStorage.removeItem('@Git:user', user);
+    localStorage.removeItem('@Git:user');
   }, []);
   async function searchUser(event) {
     event.preventDefault();
@@ -46,16 +46,21 @@ function Home() {
               </Form>
             </Card>
             <Card className="back">
-              <h1>Erro :(</h1>
+              <i
+                className="fas fa-heart-broken"
+                style={{ fontSize: 150, color: '#E74C3C' }}
+              />
+              <h1>Opa, não encontramos este usuário</h1>
+
               {inputMessage && <p>{inputMessage}</p>}
-              <button
+              <Button
                 type="button"
                 onClick={() => {
                   setClass('ini cad');
                 }}
               >
-                Pesquisar
-              </button>
+                Pesquisar Novamente
+              </Button>
             </Card>
           </div>
         </Section>
