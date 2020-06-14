@@ -15,10 +15,14 @@
   align-items: center;
   justify-content: center;
 }
-button, a{
+button{
   cursor: pointer;
 }
 
+
+.background{
+  background: linear-gradient(180deg, #15202B 24.84%, rgba(250, 251, 252, 0) 474.41%);
+}
 
 input{
   padding: 24px;
@@ -46,7 +50,9 @@ input{
   width: 300px;
   height: 300px;
   perspective: 1000px;
+
 }
+
 
 .err {
   transition: error 0.6s;

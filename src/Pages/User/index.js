@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Item, Container, UserSection, RepoSection } from './style';
+import {
+  Item,
+  Container,
+  UserSection,
+  RepoSection,
+  UserName,
+  InfoText,
+  InfoTitle,
+  InfoBox,
+  UserImage,
+  Back,
+  Count,
+} from './style';
 import api from '../../services/api';
 
 function User() {
@@ -36,29 +48,59 @@ function User() {
   return (
     <Container>
       {!loading ? (
-        <UserSection>
-          <h1>{user.login}</h1>
-          <img
-            src={user.avatar_url}
-            style={{ width: 250, height: 250 }}
-            alt="Imagem de Perfil do usuario"
-          />
+        <>
+          <Back to="/">
+            <i style={{ color: '#FFF' }} className="fas fa-arrow-left" />
+          </Back>
+          <UserSection className="background">
+            <UserImage
+              src={user.avatar_url}
+              style={{ width: 250, height: 250, alignSelf: 'center' }}
+              alt="Imagem de Perfil do usuario"
+            />
 
-          {user.twitter_username ? <p>Twitter:user.twitter_username</p> : null}
+            <InfoBox>
+              <UserName>{user.login}</UserName>
 
-          <p>
-            Repositórios públicos:
-            {user.public_repos ? user.public_repos : null}
-          </p>
-          <p>
-            Seguidores:
-            {user.followers ? user.followers : null}
-          </p>
-          <p>
-            Seguindo:
-            {user.following ? user.following : null}
-          </p>
-        </UserSection>
+              {user.email ? (
+                <InfoTitle>
+                  Email:
+                  <InfoText>{user.email}</InfoText>
+                </InfoTitle>
+              ) : (
+                <InfoText>Nenhuma Informação de Email foi encontrada</InfoText>
+              )}
+              {user.bio ? (
+                <InfoTitle>
+                  Bio:
+                  <InfoText>{user.bio}</InfoText>
+                </InfoTitle>
+              ) : (
+                <InfoText>Nenhuma Informação de Bio foi encontrada</InfoText>
+              )}
+
+              {user.public_repos ? (
+                <InfoTitle>
+                  Repositórios públicos:
+                  <InfoText>{user.public_repos}</InfoText>
+                </InfoTitle>
+              ) : null}
+
+              {user.followers ? (
+                <InfoTitle>
+                  Seguidores:
+                  <InfoText>{user.followers}</InfoText>
+                </InfoTitle>
+              ) : null}
+              {user.following ? (
+                <InfoTitle>
+                  Seguindo:
+                  <InfoText>{user.following}</InfoText>
+                </InfoTitle>
+              ) : null}
+            </InfoBox>
+          </UserSection>
+        </>
       ) : (
         <div className="loader" />
       )}
@@ -67,8 +109,16 @@ function User() {
           {repos.map((repo) => (
             <Item key={repo.full_name}>
               <span>{repo.name}</span>
-
-              <span>{repo.stargazers_count}</span>
+              <div>
+                <Count>
+                  <i className="fas fa-star" />
+                  {repo.stargazers_count}
+                </Count>
+                <Count>
+                  <i className="fas fa-code-branch" />
+                  {repo.forks_count}
+                </Count>
+              </div>
             </Item>
           ))}
         </RepoSection>

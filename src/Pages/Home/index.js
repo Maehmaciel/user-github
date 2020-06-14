@@ -19,11 +19,9 @@ function Home() {
     }
     try {
       const { data } = await api.get(`${userName}`);
-      console.log(data);
       localStorage.setItem('@Git:user', data.login);
       setUser(userName);
     } catch (error) {
-      console.log(error);
       setClass('ini err');
     }
   }
@@ -36,6 +34,7 @@ function Home() {
         <Section className="flip-card">
           <div className={cls}>
             <Card className="front">
+              <i className="fab fa-github-square" style={{ fontSize: 150 }} />
               <Form onSubmit={searchUser}>
                 <input
                   onChange={(e) => setUserName(e.target.value)}

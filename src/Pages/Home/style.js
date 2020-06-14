@@ -9,15 +9,16 @@ export const Card = styled.div`
   background-color: #fff;
   color: black;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 export const Container = styled.div`
-  width: 30%;
   display: flex;
   flex-direction: column;
 `;
 export const Section = styled.section`
-  width: 100%;
-  min-height: 400px;
   display: flex;
   flex-direction: column;
 `;
@@ -26,6 +27,7 @@ export const Form = styled.form`
   padding: 24px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 export const Button = styled.button`
   background-color: #73b452;
