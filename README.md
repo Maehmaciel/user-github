@@ -1,6 +1,6 @@
 # Cosmobots
 
-Projeto desenvolvido em React como resposta ao desafio da empresa Cosmobots e possibilita:
+Projeto desenvolvido em React.
 - Pesquisar usuário do github;
 - Vizualizar informações do usuário, caso exista;
 - Vizualizar repositórios públicos, ordenados pela quantidade de estrelas que o repositório possui.
